@@ -29,3 +29,6 @@ pnpm-debug.log*
 
 # Claude Code machine-local settings
 .claude/settings.local.json
+
+# Claude Code project instructions (local only)
+CLAUDE.md
