@@ -25,6 +25,28 @@ biomechanics, radiation dosimetry, and **wearable sensors**.
 the dev server's state (it starts looking for assets in `dist/` and returns 500s).
 After any build, restart dev: `pkill -f "astro dev"` then `npm run dev`.
 
+## Deployment
+
+Hosted on **GitHub Pages** at **https://mbil-umich.github.io/**.
+
+- **Repo:** `mbil-umich/mbil-umich.github.io` (a root *user site* — the repo name
+  matches the owner, so the site serves at the domain root with **no `base`
+  path**; `astro.config.mjs` sets `site` to this URL).
+- **How deploys work:** push to `main` → `.github/workflows/deploy.yml` runs
+  `withastro/action` (build) + `actions/deploy-pages` (publish). ~45s, fully
+  automatic. No manual `dist/` commit — `dist/` is gitignored. Pages is
+  configured with `build_type: workflow` (Settings → Pages → Source = "GitHub
+  Actions"), **not** branch deploy.
+- **Watch a deploy:** `gh run list` / `gh run watch`. The legacy
+  `pages-build-deployment` runs that may appear are GitHub's, harmless.
+- **Tooling:** `gh` CLI lives at `~/.local/bin/gh` (standalone binary, not
+  Homebrew — Homebrew isn't installed). Authed as `mbil-umich` with the
+  `workflow` scope; `gh` is git's credential helper. Editing the workflow file
+  requires that `workflow` scope on the token.
+- **Custom domain (future):** to switch to `mbil.kines.umich.edu`, UMich IT must
+  add a DNS `CNAME` → `mbil-umich.github.io`, then add `public/CNAME` containing
+  the domain and update `site` in `astro.config.mjs`.
+
 ## Design system
 
 `src/styles/global.css` is the **single source of truth** for the visual language.
