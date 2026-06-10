@@ -1,0 +1,208 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Avatar from "../components/Avatar.astro";
+import { pi } from "../config/site";
+
+const postdocs = [
+  {
+    name: "Amani Alkayyali",
+    role: "Postdoctoral Fellow",
+    focus: "Biomechanical assessments in the operating room",
+    photo: "/images/people/alkayyali.webp",
+  },
+];
+
+const gradStudents = [
+  {
+    name: "Layla Lynch",
+    role: "Ph.D. Student",
+    focus: "Massage interventions in breast cancer survivors",
+    photo: "/images/people/lynch.webp",
+  },
+  {
+    name: "Bhillie Luciani",
+    role: "Ph.D. Student",
+    focus: "Biomechanical applications to oncology research",
+  },
+];
+
+const staff = [
+  {
+    name: "Natalie Greener",
+    role: "Clinical Research Coordinator",
+    focus: "Study coordination & participant care",
+  },
+];
+
+const undergrads = [
+  { name: "Belzora Lovett", role: "Undergraduate Honors Student" },
+  { name: "Smarika Khadka", role: "Undergraduate Researcher" },
+  { name: "Margit Fried", role: "Undergraduate Researcher" },
+  { name: "Jessica O’Regan", role: "Undergraduate Researcher" },
+  { name: "Kelsey Ward", role: "Undergraduate Researcher" },
+  { name: "Brendan Gray", role: "Undergraduate Researcher" },
+];
+
+// Selected lab alumni (from CV mentorship record).
+const alumni = [
+  {
+    name: "Joshua Leonardis, Ph.D.",
+    note: "ASB Young Scientist Predoctoral Award; shoulder biomechanics after breast reconstruction",
+  },
+  { name: "Whitney Wolff, Ph.D.", note: "Neck muscle mechanics & chronic neck pain" },
+  {
+    name: "Susann Wolfram, Ph.D.",
+    note: "Postdoctoral Fellow — pectoralis major mechanics after radiotherapy",
+  },
+  {
+    name: "Tea Lulic-Kuryllo, Ph.D.",
+    note: "Postdoctoral Fellow — shoulder stretch reflexes",
+  },
+  {
+    name: "Jamie Takayesu, M.D.",
+    note: "Postdoctoral Fellow — radiation dosimetry & rehabilitation",
+  },
+  {
+    name: "Kayla Russell-Bertucci",
+    note: "Research staff — smartphone-based range-of-motion assessment",
+  },
+];
+---
+
+<BaseLayout
+  title="People"
+  description="Faculty, researchers, and students of the Musculoskeletal Biomechanics & Imaging Laboratory at the University of Michigan."
+>
+  <PageHeader
+    eyebrow="Our team"
+    title="People"
+    lead="A collaborative group spanning kinesiology, biomedical engineering, and medicine — working together on shoulder health, imaging, and cancer survivorship."
+  />
+
+  <!-- PI -->
+  <section class="container-page py-20">
+    <SectionHeading title="Principal Investigator" />
+    <div class="card mt-12 flex flex-col gap-7 p-8 sm:flex-row sm:items-start">
+      <img
+        src="/images/people/lipps.webp"
+        alt="Portrait of David B. Lipps"
+        width="358"
+        height="444"
+        class="h-40 w-32 shrink-0 rounded-lg object-cover object-top"
+        loading="eager"
+      />
+      <div>
+        <h3 class="text-2xl font-semibold text-primary">{pi.name}</h3>
+        <p class="mt-1 font-medium text-charcoal">{pi.title}</p>
+        <ul class="mt-2 space-y-0.5 text-sm text-subtle">
+          {pi.affiliations.map((a) => <li>{a}</li>)}
+        </ul>
+        <p class="mt-4 max-w-2xl leading-relaxed text-muted">
+          Dr. Lipps directs the Musculoskeletal Biomechanics &amp; Imaging
+          Laboratory, integrating quantitative ultrasound imaging, experimental
+          biomechanics, and wearable technology to understand shoulder function.
+          His research program centers on the upper-extremity morbidity faced by
+          breast cancer survivors following surgery and radiation therapy, with
+          the goal of improving how these impairments are detected and treated.
+        </p>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <a href={pi.scholarUrl} target="_blank" rel="noopener noreferrer" class="btn-outline text-sm">Google Scholar</a>
+          <a href={pi.pubmedUrl} target="_blank" rel="noopener noreferrer" class="btn-outline text-sm">PubMed</a>
+          <a href={pi.orcidUrl} target="_blank" rel="noopener noreferrer" class="btn-outline text-sm">ORCID</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Current members -->
+  <section class="border-t border-border bg-surface">
+    <div class="container-page py-20">
+      <SectionHeading title="Postdoctoral Fellows" />
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          postdocs.map((m) => (
+            <article class="card flex items-start gap-4 p-6">
+              <Avatar name={m.name} photo={m.photo} />
+              <div>
+                <h3 class="font-semibold text-charcoal">{m.name}</h3>
+                <p class="text-sm font-medium text-primary-600">{m.role}</p>
+                <p class="mt-1 text-sm text-muted">{m.focus}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <h2 class="mt-14 text-3xl font-bold">Graduate Students</h2>
+      <span class="accent-rule mt-4"></span>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          gradStudents.map((m) => (
+            <article class="card flex items-start gap-4 p-6">
+              <Avatar name={m.name} photo={m.photo} />
+              <div>
+                <h3 class="font-semibold text-charcoal">{m.name}</h3>
+                <p class="text-sm font-medium text-primary-600">{m.role}</p>
+                <p class="mt-1 text-sm text-muted">{m.focus}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <h2 class="mt-14 text-3xl font-bold">Research Staff</h2>
+      <span class="accent-rule mt-4"></span>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          staff.map((m) => (
+            <article class="card flex items-start gap-4 p-6">
+              <Avatar name={m.name} />
+              <div>
+                <h3 class="font-semibold text-charcoal">{m.name}</h3>
+                <p class="text-sm font-medium text-primary-600">{m.role}</p>
+                <p class="mt-1 text-sm text-muted">{m.focus}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <h2 class="mt-14 text-3xl font-bold">Undergraduate Researchers</h2>
+      <span class="accent-rule mt-4"></span>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          undergrads.map((m) => (
+            <article class="card flex items-center gap-4 p-5">
+              <Avatar name={m.name} size="h-11 w-11" textSize="text-sm" />
+              <div>
+                <h3 class="font-semibold text-charcoal">{m.name}</h3>
+                <p class="text-sm text-muted">{m.role}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Alumni -->
+  <section class="container-page py-20">
+    <SectionHeading title="Selected Alumni" />
+    <p class="mt-6 max-w-2xl leading-relaxed text-muted">
+      Former lab members have gone on to academic, clinical, and industry research
+      positions. A few highlights:
+    </p>
+    <ul class="mt-10 grid gap-4 sm:grid-cols-2">
+      {
+        alumni.map((a) => (
+          <li class="card border-l-4 !border-l-maize p-6">
+            <p class="font-semibold text-charcoal">{a.name}</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted">{a.note}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

@@ -1,0 +1,31 @@
+# build output
+dist/
+
+# dependencies
+node_modules/
+
+# Astro
+.astro/
+
+# generated types
+.astro/types.d.ts
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS
+.DS_Store
+
+# editors
+.vscode/
+.idea/
+
+# Claude Code machine-local settings
+.claude/settings.local.json

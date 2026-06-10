@@ -1,0 +1,171 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import { pi } from "../config/site";
+
+// Selected peer-reviewed publications (from CV). DOIs link to the source.
+const publications = [
+  {
+    year: "2025",
+    items: [
+      {
+        authors: "Walker EM, Heinemann CM, Wolff WL, Lipps DB.",
+        title:
+          "The effect of acute cervical traction on neck muscle stiffness: a case-control examination in individuals with idiopathic chronic neck pain.",
+        venue: "Journal of Bodywork and Movement Therapies, 43:21–27.",
+        doi: "10.1016/j.jbmt.2025.04.020",
+      },
+      {
+        authors: "Lamport AE, Takayesu JSK, Lipps DB, Wolfram S.",
+        title:
+          "A case-control study of pectoralis major muscle quality in breast cancer survivors after radiation therapy without prior axillary lymph node dissection.",
+        venue: "Applied Physiology, Nutrition, and Metabolism, 50:1–8.",
+        doi: "10.1139/apnm-2025-0058",
+      },
+      {
+        authors: "Wolfram S, Herriman SA, Lipps DB.",
+        title:
+          "Prevalence and mechanisms of subacromial impingement in breast cancer patients after breast-conserving surgery and radiation therapy: a case-cohort study.",
+        venue: "Breast Cancer Research and Treatment, 209(3):553–561.",
+        doi: "10.1007/s10549-024-07514-4",
+      },
+    ],
+  },
+  {
+    year: "2024",
+    items: [
+      {
+        authors:
+          "Alkayyali AA, Cowan CPF, Owen CJ, Giannas E, Wolfram S, Hansen U, Sample AP, Emery RJH, Shtein M, Lipps DB.",
+        title:
+          "Identifying internal and external shoulder rotation using a kirigami-based shoulder patch.",
+        venue: "Wearable Technologies, 5:e23.",
+        doi: "10.1017/wtc.2024.20",
+      },
+      {
+        authors: "Leonardis JM, Momoh AO, Lipps DB.",
+        title:
+          "Choosing breast-conserving therapy or mastectomy and subpectoral implant breast reconstruction: implications for pectoralis major function.",
+        venue: "Breast Cancer Research and Treatment, 207(3):569–578.",
+        doi: "10.1007/s10549-024-07381-z",
+      },
+      {
+        authors: "Wolff WL, Heinemann CM, Kartes JM, Ashton-Miller JA, Lipps DB.",
+        title:
+          "The influence of chair recline and head and neck position on upper trapezius activity and stiffness during seated computer work.",
+        venue: "Applied Ergonomics, 117:104227.",
+        doi: "10.1016/j.apergo.2024.104227",
+      },
+    ],
+  },
+  {
+    year: "2023",
+    items: [
+      {
+        authors: "Wolfram S, Lipps DB.",
+        title: "The in vivo passive stretch response of the pectoralis major is region-specific.",
+        venue: "Journal of Biomechanics, 161:111856.",
+        doi: "10.1016/j.jbiomech.2023.111856",
+      },
+      {
+        authors: "Lulic-Kuryllo T, Leonardis JM, Momoh AO, Lipps DB.",
+        title:
+          "Assessing shoulder muscle stretch reflexes following breast cancer treatment and postmastectomy breast reconstruction.",
+        venue: "Journal of Neurophysiology, 129(4):914–926.",
+        doi: "10.1152/jn.00081.2022",
+      },
+    ],
+  },
+  {
+    year: "2019–2022",
+    items: [
+      {
+        authors:
+          "Leonardis JM, Wolff WL, Momoh AO, Lipps DB.",
+        title:
+          "Neuromuscular compensation strategies adopted at the shoulder following bilateral subpectoral implant breast reconstruction.",
+        venue:
+          "Journal of Biomechanics, 120:110348. (ASB 2020 Young Scientist Award paper)",
+        doi: "10.1016/j.jbiomech.2021.110348",
+      },
+      {
+        authors:
+          "Lipps DB, Leonardis JM, Dess RT, McGinnis G, Marsh R, Strauss JB, Hayman JA, Pierce LJ, Jagsi R.",
+        title:
+          "Mechanical properties of the shoulder and pectoralis major in breast cancer patients undergoing breast-conserving surgery with axillary surgery and radiotherapy.",
+        venue: "Scientific Reports, 9(1):17737.",
+        doi: "10.1038/s41598-019-54100-6",
+      },
+      {
+        authors: "Lipps DB, Sachdev S, Strauss JB.",
+        title:
+          "Quantifying radiation dose delivered to individual shoulder muscles during breast radiotherapy.",
+        venue: "Radiotherapy and Oncology, 122(3):431–436.",
+        doi: "10.1016/j.radonc.2016.12.032",
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Publications"
+  description="Selected peer-reviewed publications from the Musculoskeletal Biomechanics & Imaging Laboratory."
+>
+  <PageHeader
+    eyebrow="Our work in print"
+    title="Publications"
+    lead="A selection of recent peer-reviewed work. For a complete and current list, please see the lab director's PubMed and ORCID profiles."
+  />
+
+  <section class="container-page py-20">
+    <!-- External profile links -->
+    <div class="mb-14 flex flex-wrap gap-4">
+      <a href={pi.scholarUrl} target="_blank" rel="noopener noreferrer" class="btn-outline">
+        Google Scholar
+      </a>
+      <a href={pi.pubmedUrl} target="_blank" rel="noopener noreferrer" class="btn-outline">
+        PubMed
+      </a>
+      <a href={pi.orcidUrl} target="_blank" rel="noopener noreferrer" class="btn-outline">
+        ORCID
+      </a>
+    </div>
+
+    <!-- Publications grouped by year -->
+    <div class="space-y-14">
+      {
+        publications.map((group) => (
+          <div>
+            <div class="flex items-baseline gap-4">
+              <h2 class="font-serif text-2xl font-bold text-primary">{group.year}</h2>
+              <span class="h-px flex-1 bg-border" aria-hidden="true" />
+            </div>
+            <ol class="mt-6 space-y-6">
+              {group.items.map((pub) => (
+                <li class="card p-6">
+                  <p class="leading-relaxed text-charcoal">
+                    <span class="text-muted">{pub.authors}</span>{" "}
+                    <span class="font-medium">{pub.title}</span>
+                  </p>
+                  <p class="mt-2 text-sm italic text-subtle">{pub.venue}</p>
+                  <a
+                    href={`https://doi.org/${pub.doi}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline"
+                  >
+                    doi:{pub.doi}
+                    <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

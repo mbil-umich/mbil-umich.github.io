@@ -1,0 +1,47 @@
+---
+/**
+ * Avatar — circular member photo, falling back to monogram initials
+ * when no photo is provided.
+ */
+interface Props {
+  name: string;
+  photo?: string;
+  /** Tailwind size classes, e.g. "h-14 w-14". */
+  size?: string;
+  /** Initials font-size class. */
+  textSize?: string;
+}
+const { name, photo, size = "h-14 w-14", textSize = "text-lg" } = Astro.props;
+
+function initials(value: string): string {
+  const parts = value.replace(/[^A-Za-z' ]/g, "").split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "?";
+  const first = parts[0][0];
+  const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+  return (first + last).toUpperCase();
+}
+---
+
+{
+  photo ? (
+    <img
+      src={photo}
+      alt={`Portrait of ${name}`}
+      width="358"
+      height="444"
+      loading="lazy"
+      class:list={[size, "shrink-0 rounded-full object-cover object-top"]}
+    />
+  ) : (
+    <div
+      class:list={[
+        size,
+        textSize,
+        "grid shrink-0 place-items-center rounded-full bg-canvas font-serif font-bold text-primary",
+      ]}
+      aria-hidden="true"
+    >
+      {initials(name)}
+    </div>
+  )
+}

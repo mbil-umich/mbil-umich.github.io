@@ -1,0 +1,31 @@
+---
+/**
+ * PageHeader — consistent page title block with an eyebrow label,
+ * a serif heading, a maize accent rule, and an optional lead paragraph.
+ */
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+}
+const { eyebrow, title, lead } = Astro.props;
+---
+
+<section class="border-b border-border bg-surface">
+  <div class="container-page py-14 md:py-16">
+    {
+      eyebrow && (
+        <p class="text-sm font-semibold uppercase tracking-wider text-primary-600">
+          {eyebrow}
+        </p>
+      )
+    }
+    <h1 class="mt-2 text-4xl font-bold md:text-5xl">{title}</h1>
+    <span class="accent-rule mt-5"></span>
+    {
+      lead && (
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{lead}</p>
+      )
+    }
+  </div>
+</section>

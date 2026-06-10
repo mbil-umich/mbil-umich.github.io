@@ -1,0 +1,16 @@
+---
+/**
+ * SectionHeading — a serif section title with a maize accent rule,
+ * for use within page content.
+ */
+interface Props {
+  title: string;
+  align?: "left" | "center";
+}
+const { title, align = "left" } = Astro.props;
+---
+
+<div class:list={[align === "center" && "text-center"]}>
+  <h2 class="text-3xl font-bold">{title}</h2>
+  <span class:list={["accent-rule mt-4", align === "center" && "mx-auto"]}></span>
+</div>

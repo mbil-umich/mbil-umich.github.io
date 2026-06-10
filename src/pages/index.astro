@@ -1,0 +1,179 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Figure from "../components/Figure.astro";
+import { site } from "../config/site";
+
+const researchAreas = [
+  {
+    title: "Shoulder Health After Breast Cancer",
+    body: "Characterizing how mastectomy, breast reconstruction, and radiation therapy alter shoulder muscle mechanics, strength, and function in survivors.",
+  },
+  {
+    title: "Quantitative Muscle Imaging",
+    body: "Using ultrasound shear-wave elastography to measure the stiffness and material properties of the pectoralis major and other muscles in vivo.",
+  },
+  {
+    title: "Radiation Dosimetry & Function",
+    body: "Linking the radiation dose delivered to shoulder musculature with downstream pain, stiffness, and mobility outcomes after breast radiotherapy.",
+  },
+  {
+    title: "Wearable & Digital Health",
+    body: "Developing kirigami-inspired sensor patches and smartphone tools to track shoulder range of motion outside the laboratory.",
+  },
+];
+
+const stats = [
+  { value: "40+", label: "Peer-reviewed publications" },
+  { value: "$5M+", label: "In funded research (ACS, NIH, Komen)" },
+  { value: "10", label: "Current lab members" },
+];
+---
+
+<BaseLayout>
+  <!-- ============================ HERO ============================ -->
+  <section class="relative overflow-hidden border-b border-border bg-primary">
+    <!-- Maize hairline at top -->
+    <div class="absolute inset-x-0 top-0 h-1 bg-maize" aria-hidden="true"></div>
+
+    <div class="container-page grid gap-12 py-20 md:grid-cols-12 md:py-28">
+      <div class="md:col-span-7 lg:col-span-7">
+        <p class="text-sm font-semibold uppercase tracking-wider text-maize">
+          {site.parent} · {site.university}
+        </p>
+        <h1 class="mt-4 font-serif text-4xl font-bold leading-tight text-white md:text-5xl lg:text-[3.5rem]">
+          Musculoskeletal Biomechanics &amp; Imaging Laboratory
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-200">
+          {site.tagline}
+        </p>
+        <div class="mt-9 flex flex-wrap gap-4">
+          <a href="/research" class="btn-primary bg-maize !text-primary hover:!bg-maize-600">
+            Explore our research
+          </a>
+          <a
+            href="/contact"
+            class="btn-outline !border-white/30 !bg-transparent !text-white hover:!border-white hover:!bg-white/10"
+          >
+            Join the lab
+          </a>
+        </div>
+      </div>
+
+      <!-- School of Kinesiology lockup -->
+      <div class="hidden md:col-span-5 md:flex md:items-center md:justify-center">
+        <img
+          src="/logos/kines-vertical-white.png"
+          alt="School of Kinesiology, University of Michigan"
+          width="400"
+          height="350"
+          class="h-56 w-auto opacity-95"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== STATS ========================== -->
+  <section class="border-b border-border bg-surface">
+    <div class="container-page grid gap-8 py-10 sm:grid-cols-3">
+      {
+        stats.map((stat) => (
+          <div class="text-center sm:text-left">
+            <p class="font-serif text-4xl font-bold text-primary">{stat.value}</p>
+            <p class="mt-1 text-sm text-muted">{stat.label}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ========================== MISSION ========================== -->
+  <section class="container-page py-20">
+    <div class="grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <SectionHeading title="Our Mission" />
+      </div>
+      <div class="lg:col-span-7">
+        <p class="text-xl leading-relaxed text-charcoal">
+          We study how the structure of muscle and connective tissue shapes the
+          function and stability of the shoulder.
+        </p>
+        <p class="mt-5 leading-relaxed text-muted">
+          A central focus of the lab is the upper-extremity morbidity experienced
+          by breast cancer survivors. Surgery and radiation therapy can leave the
+          shoulder stiff, weak, and painful — yet these changes are difficult to
+          measure with conventional clinical tools. By combining quantitative
+          medical imaging, experimental biomechanics, and wearable technology, we
+          work to detect these impairments earlier and guide more effective
+          rehabilitation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== RESEARCH AREAS ====================== -->
+  <section class="border-t border-border bg-surface">
+    <div class="container-page py-20">
+      <SectionHeading title="Research Areas" />
+      <div class="mt-12 grid gap-6 sm:grid-cols-2">
+        {
+          researchAreas.map((area) => (
+            <article class="card p-7 transition-shadow hover:shadow-lg">
+              <h3 class="text-xl font-semibold text-primary">{area.title}</h3>
+              <p class="mt-3 leading-relaxed text-muted">{area.body}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="mt-10">
+        <a href="/research" class="btn-outline">
+          See all research
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURED FIGURE ===================== -->
+  <section class="border-t border-border bg-canvas">
+    <div class="container-page py-20">
+      <SectionHeading title="From the Lab" />
+      <p class="mt-6 max-w-2xl leading-relaxed text-muted">
+        A kirigami-inspired wearable patch developed in the lab uses an array of
+        strain gauges to identify shoulder rotation — bringing objective movement
+        assessment out of the lab and onto the body.
+      </p>
+      <div class="mt-10">
+        <Figure
+          src="/images/kirigami-shoulder-patch.jpg"
+          alt="A kirigami-based shoulder patch: the flexible strain-gauge patch, its placement over the shoulder near the acromion, and the companion armband electronics."
+          width={3385}
+          height={1088}
+          caption="The kirigami shoulder patch, its placement over the shoulder, and the companion armband electronics."
+          credit="Alkayyali et al., Wearable Technologies (2024)"
+          creditUrl="https://doi.org/10.1017/wtc.2024.20"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== CTA ========================== -->
+  <section class="border-t border-border bg-surface">
+    <div class="container-page py-16">
+      <div class="card flex flex-col items-start gap-6 p-9 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h2 class="text-2xl font-bold text-primary">Interested in joining or collaborating?</h2>
+          <p class="mt-2 max-w-xl text-muted">
+            We welcome prospective graduate students, undergraduate researchers,
+            and clinical collaborators in oncology, surgery, and rehabilitation.
+          </p>
+        </div>
+        <a href="/contact" class="btn-primary shrink-0">Get in touch</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
