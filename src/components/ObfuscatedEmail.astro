@@ -1,0 +1,56 @@
+---
+/**
+ * ObfuscatedEmail — renders an email link without ever placing the literal
+ * address in the static HTML, so automated scrapers that regex the page source
+ * find nothing harvestable.
+ *
+ * The address is split into `user` / `domain` and stored *reversed* in data
+ * attributes; a tiny inline script reassembles the visible text and the
+ * `mailto:` href in the browser. A <noscript> fallback shows a human-readable
+ * "user [at] domain" form (still not a valid email string) for the rare no-JS
+ * visitor.
+ */
+interface Props {
+  /** Local part, e.g. "dlipps". */
+  user: string;
+  /** Domain, e.g. "umich.edu". */
+  domain: string;
+  /** Optional classes for the rendered <a>. */
+  class?: string;
+}
+const { user, domain, class: className = "" } = Astro.props;
+
+const rev = (s: string) => s.split("").reverse().join("");
+const userRev = rev(user);
+const domainRev = rev(domain);
+---
+
+<span
+  class="js-obfuscated-email"
+  data-u={userRev}
+  data-d={domainRev}
+  data-class={className}
+>
+  <noscript>{user} [at] {domain.replace(/\./g, " [dot] ")}</noscript>
+</span>
+
+<script is:inline>
+  (function () {
+    var rev = function (s) {
+      return s.split("").reverse().join("");
+    };
+    document.querySelectorAll(".js-obfuscated-email").forEach(function (el) {
+      var user = rev(el.getAttribute("data-u") || "");
+      var domain = rev(el.getAttribute("data-d") || "");
+      if (!user || !domain) return;
+      var addr = user + "@" + domain;
+      var a = document.createElement("a");
+      a.href = "mailto:" + addr;
+      a.textContent = addr;
+      var cls = el.getAttribute("data-class");
+      if (cls) a.className = cls;
+      el.textContent = "";
+      el.appendChild(a);
+    });
+  })();
+</script>

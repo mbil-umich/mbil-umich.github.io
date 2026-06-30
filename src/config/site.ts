@@ -13,8 +13,6 @@ export const site = {
   university: "University of Michigan",
   location: "Ann Arbor, Michigan",
   address: "830 N. University Ave., Ann Arbor, MI 48109",
-  email: "dlipps@umich.edu",
-  phone: "(734) 647-3131",
 } as const;
 
 /** Principal investigator details (from CV). */
