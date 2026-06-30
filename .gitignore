@@ -23,6 +23,12 @@ pnpm-debug.log*
 # macOS
 .DS_Store
 
+# raw/unoptimized source images (originals kept locally; only optimized
+# webp under public/images/ is committed)
+/*.jpg
+/*.jpeg
+/*.png
+
 # editors
 .vscode/
 .idea/

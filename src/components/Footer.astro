@@ -89,16 +89,8 @@ const year = new Date().getFullYear();
     </div>
 
     <!-- Bottom bar -->
-    <div class="mt-8 flex flex-col gap-3 border-t border-border pt-6 text-sm text-subtle sm:flex-row sm:items-center sm:justify-between">
-      <p>&copy; {year} The Regents of the University of Michigan.</p>
-      <p>
-        <a
-          href={`mailto:${site.email}`}
-          class="underline-offset-4 transition-colors hover:text-primary hover:underline"
-        >
-          {site.email}
-        </a>
-      </p>
+    <div class="mt-8 border-t border-border pt-6 text-sm text-subtle">
+      <p>&copy; {year} {site.name}</p>
     </div>
   </div>
 </footer>

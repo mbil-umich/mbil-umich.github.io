@@ -28,6 +28,26 @@ const stats = [
   { value: "$5M+", label: "In funded research (ACS, NIH, Komen)" },
   { value: "10", label: "Current lab members" },
 ];
+
+// Studies currently enrolling participants (UMHealthResearch postings).
+const recruitingStudies = [
+  {
+    title:
+      "How Shoulder Muscle Stiffness Affects Movement in People with Shoulder Pain, Including Breast Cancer Survivors",
+    summary:
+      "We are studying how the stiffness of a shoulder muscle (the supraspinatus) and the thickness of its tendon contribute to shoulder pain and mobility — and how breast cancer treatment affects these properties.",
+    eligibility: [
+      "Women age 40 or older",
+      "Previously diagnosed with breast cancer, with treatment (surgery — lumpectomy or mastectomy) completed in the past 1–5 years",
+      "Experiencing moderate-to-severe shoulder pain and dysfunction",
+    ],
+    involves:
+      "One ~90-minute visit to the lab: shoulder range-of-motion and strength tasks, plus ultrasound imaging of the shoulder.",
+    compensation: "$15/hour gift card; parking provided.",
+    studyId: "HUM00256502",
+    url: "https://umhealthresearch.org/studies/HUM00256502",
+  },
+];
 ---
 
 <BaseLayout>
@@ -60,16 +80,18 @@ const stats = [
         </div>
       </div>
 
-      <!-- School of Kinesiology lockup -->
+      <!-- Lab photo -->
       <div class="hidden md:col-span-5 md:flex md:items-center md:justify-center">
-        <img
-          src="/logos/kines-vertical-white.png"
-          alt="School of Kinesiology, University of Michigan"
-          width="400"
-          height="350"
-          class="h-56 w-auto opacity-95"
-          loading="eager"
-        />
+        <figure class="overflow-hidden rounded-xl ring-1 ring-white/15 shadow-2xl">
+          <img
+            src="/images/lab/lab-shoulder-assessment.webp"
+            alt="A researcher guides a participant through a shoulder range-of-motion assessment in the MBIL laboratory."
+            width="1600"
+            height="1173"
+            class="h-full w-full object-cover"
+            loading="eager"
+          />
+        </figure>
       </div>
     </div>
   </section>
@@ -88,14 +110,82 @@ const stats = [
     </div>
   </section>
 
+  <!-- ===================== RECRUITING STUDIES ===================== -->
+  {
+    recruitingStudies.length > 0 && (
+      <section class="border-b border-border bg-canvas">
+        <div class="container-page py-20">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-2.5 w-2.5 animate-pulse rounded-full bg-maize ring-4 ring-maize/25" aria-hidden="true" />
+            <p class="text-sm font-semibold uppercase tracking-wider text-primary-600">
+              Now recruiting participants
+            </p>
+          </div>
+          <h2 class="mt-3 text-3xl font-bold">Join a Research Study</h2>
+          <span class="accent-rule mt-4" />
+          <p class="mt-6 max-w-2xl leading-relaxed text-muted">
+            Volunteers make our research possible. If you think you might be
+            eligible for a study below, we would love to hear from you.
+          </p>
+
+          <div class="mt-10 grid gap-6">
+            {recruitingStudies.map((study) => (
+              <article class="card border-l-4 !border-l-maize p-7 sm:p-8">
+                <h3 class="text-xl font-semibold text-primary">{study.title}</h3>
+                <p class="mt-3 leading-relaxed text-muted">{study.summary}</p>
+
+                <div class="mt-6 grid gap-6 sm:grid-cols-2">
+                  <div>
+                    <p class="text-sm font-semibold uppercase tracking-wide text-charcoal">
+                      You may be eligible if you
+                    </p>
+                    <ul class="mt-3 space-y-2">
+                      {study.eligibility.map((item) => (
+                        <li class="flex gap-2 text-sm leading-relaxed text-muted">
+                          <svg class="mt-0.5 h-4 w-4 shrink-0 text-primary-600" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                          </svg>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="space-y-4">
+                    <div>
+                      <p class="text-sm font-semibold uppercase tracking-wide text-charcoal">
+                        What's involved
+                      </p>
+                      <p class="mt-2 text-sm leading-relaxed text-muted">{study.involves}</p>
+                    </div>
+                    <div>
+                      <p class="text-sm font-semibold uppercase tracking-wide text-charcoal">
+                        Compensation
+                      </p>
+                      <p class="mt-2 text-sm leading-relaxed text-muted">{study.compensation}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-7 flex flex-wrap items-center gap-4">
+                  <a href={study.url} target="_blank" rel="noopener noreferrer" class="btn-primary">
+                    Learn more &amp; sign up
+                  </a>
+                  <p class="text-sm text-subtle">Study ID: {study.studyId}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   <!-- ========================== MISSION ========================== -->
   <section class="container-page py-20">
-    <div class="grid gap-12 lg:grid-cols-12">
-      <div class="lg:col-span-5">
-        <SectionHeading title="Our Mission" />
-      </div>
+    <div class="grid items-center gap-12 lg:grid-cols-12">
       <div class="lg:col-span-7">
-        <p class="text-xl leading-relaxed text-charcoal">
+        <SectionHeading title="Our Mission" />
+        <p class="mt-8 text-xl leading-relaxed text-charcoal">
           We study how the structure of muscle and connective tissue shapes the
           function and stability of the shoulder.
         </p>
@@ -108,6 +198,18 @@ const stats = [
           work to detect these impairments earlier and guide more effective
           rehabilitation.
         </p>
+      </div>
+      <div class="lg:col-span-5">
+        <figure class="overflow-hidden rounded-xl border border-border shadow-sm">
+          <img
+            src="/images/lab/lab-data-collection.webp"
+            alt="Lab members recording measurements during a shoulder assessment session in the MBIL laboratory."
+            width="1400"
+            height="933"
+            class="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </figure>
       </div>
     </div>
   </section>

@@ -25,6 +25,7 @@ const gradStudents = [
     name: "Bhillie Luciani",
     role: "Ph.D. Student",
     focus: "Biomechanical applications to oncology research",
+    photo: "/images/people/luciani.webp",
   },
 ];
 
@@ -37,12 +38,13 @@ const staff = [
 ];
 
 const undergrads = [
-  { name: "Belzora Lovett", role: "Undergraduate Honors Student" },
-  { name: "Smarika Khadka", role: "Undergraduate Researcher" },
-  { name: "Margit Fried", role: "Undergraduate Researcher" },
-  { name: "Jessica O’Regan", role: "Undergraduate Researcher" },
+  { name: "Belzora Lovett", role: "Undergraduate Honors Student", photo: "/images/people/lovett.webp" },
+  { name: "Smarika Khadka", role: "Undergraduate Researcher", photo: "/images/people/khadka.webp" },
+  { name: "Margit Fried", role: "Undergraduate Researcher", photo: "/images/people/fried.webp" },
+  { name: "Jessica O’Regan", role: "Undergraduate Researcher", photo: "/images/people/oregan.webp" },
   { name: "Kelsey Ward", role: "Undergraduate Researcher" },
-  { name: "Brendan Gray", role: "Undergraduate Researcher" },
+  { name: "Brendan Gray", role: "Undergraduate Researcher", photo: "/images/people/gray.webp" },
+  { name: "Annie Atwood", role: "Undergraduate Researcher" },
 ];
 
 // Selected lab alumni (from CV mentorship record).
@@ -175,7 +177,7 @@ const alumni = [
         {
           undergrads.map((m) => (
             <article class="card flex items-center gap-4 p-5">
-              <Avatar name={m.name} size="h-11 w-11" textSize="text-sm" />
+              <Avatar name={m.name} photo={m.photo} size="h-11 w-11" textSize="text-sm" />
               <div>
                 <h3 class="font-semibold text-charcoal">{m.name}</h3>
                 <p class="text-sm text-muted">{m.role}</p>
