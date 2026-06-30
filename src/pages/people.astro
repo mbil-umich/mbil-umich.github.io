@@ -42,7 +42,7 @@ const undergrads = [
   { name: "Smarika Khadka", role: "Undergraduate Researcher", photo: "/images/people/khadka.webp" },
   { name: "Margit Fried", role: "Undergraduate Researcher", photo: "/images/people/fried.webp" },
   { name: "Jessica O’Regan", role: "Undergraduate Researcher", photo: "/images/people/oregan.webp" },
-  { name: "Kelsey Ward", role: "Undergraduate Researcher" },
+  { name: "Kelsey Ward", role: "Undergraduate Researcher", photo: "/images/people/ward.webp" },
   { name: "Brendan Gray", role: "Undergraduate Researcher", photo: "/images/people/gray.webp" },
   { name: "Annie Atwood", role: "Undergraduate Researcher" },
 ];
@@ -52,23 +52,32 @@ const alumni = [
   {
     name: "Joshua Leonardis, Ph.D.",
     note: "ASB Young Scientist Predoctoral Award; shoulder biomechanics after breast reconstruction",
+    url: "https://hrs.osu.edu/faculty-and-staff/faculty-directory/leonardis-josh",
   },
-  { name: "Whitney Wolff, Ph.D.", note: "Neck muscle mechanics & chronic neck pain" },
+  {
+    name: "Whitney Wolff, Ph.D.",
+    note: "Neck muscle mechanics & chronic neck pain",
+    url: "https://hrs.osu.edu/faculty-and-staff/faculty-directory/wolff-whitney",
+  },
   {
     name: "Susann Wolfram, Ph.D.",
     note: "Postdoctoral Fellow — pectoralis major mechanics after radiotherapy",
+    url: "https://www.northumbria.ac.uk/about-us/our-staff/w/suzi-wolfram/",
   },
   {
     name: "Tea Lulic-Kuryllo, Ph.D.",
     note: "Postdoctoral Fellow — shoulder stretch reflexes",
+    url: "https://www.linkedin.com/in/tea-lulic-kuryllo-57148140/",
   },
   {
     name: "Jamie Takayesu, M.D.",
     note: "Postdoctoral Fellow — radiation dosimetry & rehabilitation",
+    url: "https://www.fredhutch.org/en/people/t/jamie-takayesu.html",
   },
   {
-    name: "Kayla Russell-Bertucci",
-    note: "Research staff — smartphone-based range-of-motion assessment",
+    name: "Brian Diefenbach, M.S.",
+    note: "Graduate researcher — shoulder biomechanics",
+    url: "https://www.linkedin.com/in/brian-diefenbach-4250aa12a/",
   },
 ];
 ---
@@ -200,7 +209,21 @@ const alumni = [
       {
         alumni.map((a) => (
           <li class="card border-l-4 !border-l-maize p-6">
-            <p class="font-semibold text-charcoal">{a.name}</p>
+            {a.url ? (
+              <a
+                href={a.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group inline-flex items-center gap-1.5 font-semibold text-charcoal underline-offset-4 transition-colors hover:text-primary hover:underline"
+              >
+                {a.name}
+                <svg class="h-3.5 w-3.5 text-subtle transition-colors group-hover:text-primary" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                </svg>
+              </a>
+            ) : (
+              <p class="font-semibold text-charcoal">{a.name}</p>
+            )}
             <p class="mt-1 text-sm leading-relaxed text-muted">{a.note}</p>
           </li>
         ))
