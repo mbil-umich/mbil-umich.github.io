@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mbil-umich.github.io',
+  site: 'https://mbil.kines.umich.edu',
   integrations: [sitemap()],
   vite: {
     // Cast avoids a cosmetic type clash between Tailwind's bundled Vite
